@@ -10,16 +10,16 @@ variable "tags" {
   EOF
   type        = map(string)
   default = {
-    "unit" = "IT",
-    "env"  = "dev",
+    "unit"  = "IT",
+    "env"   = "dev",
     "owner" = "Sasa Popravak"
   }
 }
 
 variable "vmname" {
-  description = "VM name. Default: ubuntu001"
+  description = "VM name. Default prefix: ubuntu"
   type        = string
-  default     = "ubuntu001"
+  default     = "ubuntu"
 }
 
 variable "vmadmin" {
@@ -74,4 +74,10 @@ variable "environment_prefix" {
   description = "Environment Prefix. Example: dev"
   type        = string
   default     = "dev"
+}
+
+variable "vmcount" {
+  description = "Number of VMs. Default: 1"
+  type        = number
+  default     = 2
 }

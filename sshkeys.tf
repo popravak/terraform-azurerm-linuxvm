@@ -6,8 +6,8 @@ resource "tls_private_key" "ssh_keys" {
 
 provisioner "local-exec" {   
     command = <<-EOT
-      echo '${tls_private_key.ssh_keys.private_key_pem}' > privatekey.pem
-      chmod 400 privatekey.pem
+      echo '${tls_private_key.ssh_keys.private_key_pem}' > key
+      chmod 400 key
     EOT
 }
 */
