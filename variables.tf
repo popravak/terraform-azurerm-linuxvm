@@ -1,13 +1,18 @@
 
+variable "rg_name" {
+  description = "Resource group name"
+  type        = string
+  default     = "rgspo001"
+}
+
+variable "location" {
+  description = "Resource group location"
+  type        = string
+  default     = "North Europe"
+}
+
 variable "tags" {
-  description = <<EOF
-  Tags. Default:
-  tags = {
-    "unit" = "IT",
-    "env"  = "dev",
-    "owner" = "Sasa Popravak"
-    }
-  EOF
+  description = "VM tags"
   type        = map(string)
   default = {
     "unit"  = "IT",
@@ -17,67 +22,67 @@ variable "tags" {
 }
 
 variable "vmname" {
-  description = "VM name. Default prefix: ubuntu"
+  description = "VM name prefix"
   type        = string
   default     = "ubuntu"
 }
 
 variable "vmadmin" {
-  description = "VM admin username . Default: malloy"
+  description = "VM admin username"
   type        = string
   default     = "malloy"
 }
 
 variable "vmpublisher" {
-  description = "VM publisher. Default: Canonical"
+  description = "VM publisher"
   type        = string
   default     = "Canonical"
 }
 
 variable "vmsize" {
-  description = "VM size. Default: Standard_D2s_v3"
+  description = "VM size"
   type        = string
   default     = "Standard_D2s_v3"
 }
 
 variable "vmoffer" {
-  description = "VM offer. Default: 0001-com-ubuntu-server-jammy"
+  description = "VM offer"
   type        = string
   default     = "0001-com-ubuntu-server-jammy"
 }
 
 variable "vmsku" {
-  description = "VM SKU. Default: 22_04-lts-gen2"
+  description = "VM SKU"
   type        = string
   default     = "22_04-lts-gen2"
 }
 
 variable "vmversion" {
-  description = "VM version. Default: latest"
+  description = "VM version"
   type        = string
   default     = "latest"
 }
 
 variable "vmosdisksize" {
-  description = "VM OS disk size. Default: 50Gb"
+  description = "VM OS disk size"
   type        = string
   default     = "50"
 }
 
 variable "business_unit_prefix" {
-  description = "Business Unit Prefix. Example: IT"
+  description = "Business unit"
   type        = string
   default     = "IT"
 }
 
 variable "environment_prefix" {
-  description = "Environment Prefix. Example: dev"
+  description = "Environment"
   type        = string
   default     = "dev"
 }
 
 variable "vmcount" {
-  description = "Number of VMs. Default: 1"
+  description = "Number of VMs to deploy"
   type        = number
-  default     = 2
+  default     = 1
 }

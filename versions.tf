@@ -11,16 +11,8 @@ terraform {
 }
 
 provider "azurerm" {
-  features {
-
-  }
+  features {}
 }
 
-provider "tls" {
-
-}
-
-provider "random" {
-
-}
+provider "random" {}
 
