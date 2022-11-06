@@ -7,7 +7,6 @@ module "rg" {
 module "vnet" {
   source  = "popravak/vnet/azurerm"
   version = "1.0.4"
-  rg_name = module.rg.rg_name
 }
 
 resource "random_string" "random" {
@@ -20,16 +19,16 @@ resource "random_string" "random" {
 resource "azurerm_public_ip" "pip" {
   count               = var.vmcount
   name                = "pip-${var.business_unit_prefix}-${var.environment_prefix}-${count.index}-${random_string.random.result}"
-  resource_group_name = module.rg.rg_name
-  location            = module.rg.location
+  resource_group_name = var.rg_name
+  location            = var.location
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "iface" {
   count               = var.vmcount
   name                = "iface-${var.business_unit_prefix}-${var.environment_prefix}-${count.index}-${random_string.random.result}"
-  location            = module.rg.location
-  resource_group_name = module.rg.rg_name
+  location            = var.location
+  resource_group_name = var.rg_name
 
   ip_configuration {
     name                          = "ipconfig-${var.business_unit_prefix}-${var.environment_prefix}-${count.index}-${random_string.random.result}"
@@ -42,8 +41,8 @@ resource "azurerm_network_interface" "iface" {
 resource "azurerm_linux_virtual_machine" "linuxvm" {
   count                           = var.vmcount
   name                            = "${var.vmname}-${count.index}"
-  resource_group_name             = module.rg.rg_name
-  location                        = module.rg.location
+  resource_group_name             = var.rg_name
+  location                        = var.location
   size                            = var.vmsize
   admin_username                  = var.vmadmin
   disable_password_authentication = true
